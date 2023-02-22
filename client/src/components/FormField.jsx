@@ -26,6 +26,7 @@ const FormField = ({ labelName, type, name, placeholder, value, handleChange, is
         id={name}
         name={name}
         placeholder={placeholder}
+        value={value}
         onChange={handleChange}
         required
         className='bg-gray-50 border border-gray-300 
