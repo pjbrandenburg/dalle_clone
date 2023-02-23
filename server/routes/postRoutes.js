@@ -9,9 +9,9 @@ dotenv.config();    // Populate environment variables
 const router = express.Router();
 
 // demo route
-router.route('/').get((req, res) => {
-    res.send('Hello from DALL-E')
-})
+// router.route('/').get((req, res) => {
+//     res.send('Hello from DALL-E')
+// })
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -24,9 +24,9 @@ router.route('/').get(async(req, res) => {
     try {
         const posts = await Post.find({});
 
-        res.status(200).json({ success: true, data: posts})
+        res.status(200).json({ success: true, data: posts })
     } catch (error) {
-        res.status(500).json({ success: false, message: error})
+        res.status(500).json({ success: false, message: 'Fetching posts failed, please try again' })
     }
 });
 
@@ -40,11 +40,11 @@ router.route('/').post(async(req, res) => {
             name,
             prompt,
             photo: photoUrl.url,                                    // Only share the URL
-        })
+        });
     
-        res.status(201).json({ success: true, data: newPost });
+        res.status(200).json({ success: true, data: newPost });
     } catch (error) {
-        res.status(500).json({ success: false, message: error })
+        res.status(500).json({ success: false, message: 'Unable to create a post, please try again' })
     }
 });
 
